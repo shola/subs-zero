@@ -6,9 +6,31 @@ $reddit = new RedditApiClient\Reddit;
 $top25links = $reddit->getLinksBySubreddit('funny'); #default limit is 25
 
 function fixImgurURL($url) {
-	return $url;
+	// assume only image URL's
+
+	if (!(preg_match("/imgur.com/", $url))) {
+		return false;
+	} 
+
+	return fixPrefix(fixPostfix($url));
+
 }
 
+function fixPrefix($url) {
+	// assumes imgur.com link
+	if (preg_match("/http:\/\/i.imgur.com/", $url)) {
+		return $url;
+	} else {
+		$url = explode("//", $url)[1];
+		return "http://i." . $url;
+	}
+}
+
+function fixPostfix($url) {
+	return false;
+}
+
+// // Exploratory code
 // foreach ($top25links as $link) {
 // 	$title = $link->getTitle();
 // 	$id = $link->getID();
