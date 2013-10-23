@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Web app to display images and captions from the r/Funny subreddit.">
+    <meta name="author" content="Mike Situ">
     <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.png">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>SubReddit Viewer</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet"> -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/starter-template/starter-template.css" rel="stylesheet">
+    <link href="../css/simple-style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="../../assets/js/html5shiv.js"></script>
-      <script src="../../assets/js/respond.min.js"></script>
+      <script src="../../js/html5shiv.js"></script>
+      <script src="../../js/respond.min.js"></script>
     <![endif]-->
   </head>
 
@@ -32,13 +32,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://getbootstrap.com/examples/starter-template/#">Project name</a>
+          <a class="navbar-brand" href="index.html">subs-zero</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="http://getbootstrap.com/examples/starter-template/#">Home</a></li>
-            <li><a href="http://getbootstrap.com/examples/starter-template/#about">About</a></li>
-            <li><a href="http://getbootstrap.com/examples/starter-template/#contact">Contact</a></li>
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -46,10 +46,12 @@
 
     <div class="container">
 
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      <div class="simple-style">
+        <h1>Image Tiles</h1>
+        <p class="lead">Click a tile to see the punch line.</p>
       </div>
+
+      <img data-src="holder.js/200x200" src="data:image/png;base64,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" class="img-thumbnail" alt="200x200" style="width: 200px; height: 200px;">
 
     </div><!-- /.container -->
 
