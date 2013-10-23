@@ -4,13 +4,6 @@ require '../reddit.php';
 
 class RedditTest extends PHPUnit_Framework_TestCase
 {
-	public function testDoesURLExist(){
-		$this->assertFalse(doesURLExist("madeUpURL"));
-		$this->assertTrue(doesURLExist("http://www.google.com"));
-		$this->assertTrue(doesURLExist("http://i.imgur.com/qfT0wUg.png"));
-		$this->assertTrue(doesURLExist("http://i.imgur.com/qfT0wUg.jpg")); // imgur overloads links with all image extensions?
-	}
-
 	public function testFixImgurURL()
 	{
 		// cases to test:
@@ -37,5 +30,20 @@ class RedditTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals(fixImgurURL("http://31.media.tumblr.com/137f92927437c1c83cbfefe6787f8552/tumblr_mv2az1qoqy1rqd0kpo1_400.gif"), false);
 
+		$this->assertEquals(fixImgurURL("http://imgur.com/a/LhZMQ"), false);
 	}
+
+	// NOT NEEDED
+	// public function testDoesURLExist(){
+	// 	$this->assertFalse(doesURLExist("madeUpURL"));
+	// 	$this->assertTrue(doesURLExist("http://www.google.com"));
+
+	// 	$this->assertTrue(doesURLExist("http://imgur.com/a/LhZMQ"));
+	// 	$this->assertFalse(doesURLExist("http://i.imgur.com/a/LhZMQ"));
+	// 	$this->assertFalse(doesURLExist("http://imgur.com/a/LhZMQ.jpg"));
+	// 	$this->assertFalse(doesURLExist("http://i.imgur.com/a/LhZMQ.jpg"));
+
+	// 	$this->assertTrue(doesURLExist("http://i.imgur.com/qfT0wUg.png"));
+	// 	$this->assertTrue(doesURLExist("http://i.imgur.com/qfT0wUg.jpg")); // imgur overloads links with all image extensions?
+	// }
 }
