@@ -1,7 +1,9 @@
 subs-zero
 =========
 
-Web app to display images and captions from the r/Funny subreddit.
+Web app to display images and captions from the r/Funny subreddit. Photo albums will be ignored in initial versions of the app.
+
+
 
 Note: must use the h2s/reddit-api-client library and PHP5+.
 
@@ -12,8 +14,10 @@ cd reddit-console
 php composer.phar install
 ```
 
-Enable Curl Instructions:
-```
-sudo apt-get install php5-curl
-sudo service apache2 restart
-```
+
+~~Enable Curl Instructions:~~
+
+~~sudo apt-get install php5-curl~~
+
+~~sudo service apache2 restart~~
+
