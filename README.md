@@ -1,7 +1,7 @@
 subs-zero
 =========
 
-Web app to display subreddit data
+Web app to display images and captions from the r/Funny subreddit.
 
 Note: must use the h2s/reddit-api-client library and the latest version of PHP.
 
