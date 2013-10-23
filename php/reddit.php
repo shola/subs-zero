@@ -2,9 +2,6 @@
 
 require 'reddit-console/vendor/autoload.php';
 
-$reddit = new RedditApiClient\Reddit;
-$top25links = $reddit->getLinksBySubreddit('funny'); #default limit is 25
-
 function fixImgurURL($url) {
 	// assume only image URL's
 
@@ -12,7 +9,7 @@ function fixImgurURL($url) {
 		return false;
 	} 
 
-	return fixPrefix(fixPostfix($url));
+	return fixPostfix(fixPrefix($url));
 
 }
 
@@ -27,32 +24,54 @@ function fixPrefix($url) {
 }
 
 function fixPostfix($url) {
-	return false;
+	$imgExt = ['.jpg', '.png', '.gif'];
+	$urlPostfix = substr($url, -4);
+
+	if (in_array($urlPostfix, $imgExt)) {
+		return $url;
+	} else {
+		// imgur will open an image with any extension. use jpg as default
+		return $url . ".jpg";
+	}
 }
 
-// // Exploratory code
-// foreach ($top25links as $link) {
-// 	$title = $link->getTitle();
-// 	$id = $link->getID();
-// 	$url = $link->getURL();
+function doesURLExist($url) {
+	$ch = curl_init($url);
 
-// 	// prepend with a "i." if needed
-// 	$url = explode("//", $url)[1];
-// 	if ($url[1] != ".") {
-// 		$url = "i." . $url . ".jpg";
-// 	}
-// 	$url = "http://" . $url;
+	curl_setopt($ch, CURLOPT_NOBODY, true);
+	// curl_setopt($ch, CURLOPT_CONNECT_ONLY, true);
+	curl_exec($ch);
 
-// 	// echo nl2br($title . "\n");
-// 	// echo nl2br($id . "\n");
-// 	// echo nl2br($url . "\n\n");
+	$retcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	curl_close($ch);
 
-// 	//if the image link does not lead directly to image, prepend with an 'i'
-// 	// echo "<div id=\"$id\">
-// 	// 				<p>$title</p>
-// 	// 				<img src=\"$url\">
-// 	// 			</div>";
-// }
+	// $retcode >= 400 -> not found, $retcode = 200, found.
+	if ($retcode == 200) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+$reddit = new RedditApiClient\Reddit;
+$top25links = $reddit->getLinksBySubreddit('funny'); #default limit is 25
+
+// Exploratory code
+foreach ($top25links as $link) {
+	$title = $link->getTitle();
+	$id = $link->getID();
+	$url = fixImgurURL($link->getURL());
+
+
+	// echo nl2br($title . "\n");
+	// echo nl2br($id . "\n");
+	// echo nl2br($url . "\n\n");
+
+	echo "<div id=\"$id\">
+					<p>$title</p>
+					<img src=\"$url\">
+				</div>";
+}
 
 
 // $toplink = $top25links[0];
