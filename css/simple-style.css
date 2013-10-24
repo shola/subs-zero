@@ -1,0 +1,17 @@
+body {
+  padding: 5em;
+}
+.simple-style {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.joke {
+	padding: 3em;
+	color: black;
+	text-align: center;
+	height: 350px;
+	width: 350px;
+	font-size: 20px;
+	background: #e3e3e3;
+}
