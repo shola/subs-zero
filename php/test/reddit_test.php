@@ -13,24 +13,42 @@ class RedditTest extends PHPUnit_Framework_TestCase
 		// 4) present file extension (jpg, gif, png)
 		// 5) non-imgur link
 
-		$this->assertEquals(fixImgurURL("http://i.imgur.com/qfT0wUg.png"), "http://i.imgur.com/qfT0wUg.png");
-		$this->assertEquals(fixImgurURL("http://imgur.com/qfT0wUg.png"), "http://i.imgur.com/qfT0wUg.png");
-		$this->assertEquals(fixImgurURL("http://i.imgur.com/qfT0wUg"), "http://i.imgur.com/qfT0wUg.jpg");
-		$this->assertEquals(fixImgurURL("http://imgur.com/qfT0wUg"), "http://i.imgur.com/qfT0wUg.jpg");
+		$this->assertEquals(fixImgurURL("http://i.imgur.com/qfT0wUg.png"), 
+												"http://i.imgur.com/qfT0wUg.png");
+		$this->assertEquals(fixImgurURL("http://imgur.com/qfT0wUg.png"), 
+												"http://i.imgur.com/qfT0wUg.png");
+		$this->assertEquals(fixImgurURL("http://i.imgur.com/qfT0wUg"), 
+												"http://i.imgur.com/qfT0wUg.jpg");
+		$this->assertEquals(fixImgurURL("http://imgur.com/qfT0wUg"), 
+												"http://i.imgur.com/qfT0wUg.jpg");
 
-		$this->assertEquals(fixImgurURL("http://i.imgur.com/s598E4Z.jpg"), "http://i.imgur.com/s598E4Z.jpg");
-		$this->assertEquals(fixImgurURL("http://imgur.com/s598E4Z.jpg"), "http://i.imgur.com/s598E4Z.jpg");
-		$this->assertEquals(fixImgurURL("http://i.imgur.com/s598E4Z"), "http://i.imgur.com/s598E4Z.jpg");
-		$this->assertEquals(fixImgurURL("http://imgur.com/s598E4Z"), "http://i.imgur.com/s598E4Z.jpg");
+		$this->assertEquals(fixImgurURL("http://i.imgur.com/s598E4Z.jpg"), 
+												"http://i.imgur.com/s598E4Z.jpg");
+		$this->assertEquals(fixImgurURL("http://imgur.com/s598E4Z.jpg"), 
+												"http://i.imgur.com/s598E4Z.jpg");
+		$this->assertEquals(fixImgurURL("http://i.imgur.com/s598E4Z"), 
+												"http://i.imgur.com/s598E4Z.jpg");
+		$this->assertEquals(fixImgurURL("http://imgur.com/s598E4Z"), 
+												"http://i.imgur.com/s598E4Z.jpg");
 
-		$this->assertEquals(fixImgurURL("http://i.imgur.com/Itn0JuB.gif"), "http://i.imgur.com/Itn0JuB.gif");
-		$this->assertEquals(fixImgurURL("http://imgur.com/Itn0JuB.gif"), "http://i.imgur.com/Itn0JuB.gif");
-		$this->assertEquals(fixImgurURL("http://i.imgur.com/Itn0JuB"), "http://i.imgur.com/Itn0JuB.jpg");
-		$this->assertEquals(fixImgurURL("http://imgur.com/Itn0JuB"), "http://i.imgur.com/Itn0JuB.jpg");
+		$this->assertEquals(fixImgurURL("http://i.imgur.com/Itn0JuB.gif"), 
+												"http://i.imgur.com/Itn0JuB.gif");
+		$this->assertEquals(fixImgurURL("http://imgur.com/Itn0JuB.gif"), 
+												"http://i.imgur.com/Itn0JuB.gif");
+		$this->assertEquals(fixImgurURL("http://i.imgur.com/Itn0JuB"), 
+												"http://i.imgur.com/Itn0JuB.jpg");
+		$this->assertEquals(fixImgurURL("http://imgur.com/Itn0JuB"), 
+												"http://i.imgur.com/Itn0JuB.jpg");
 
-		$this->assertEquals(fixImgurURL("http://31.media.tumblr.com/137f92927437c1c83cbfefe6787f8552/tumblr_mv2az1qoqy1rqd0kpo1_400.gif"), false);
+		$this->assertEquals(fixImgurURL("http://31.media.tumblr.com/137f92927437c1c83cbfefe6787f8552/tumblr_mv2az1qoqy1rqd0kpo1_400.gif"), 
+												false);
 
-		$this->assertEquals(fixImgurURL("http://imgur.com/a/LhZMQ"), false);
+		$this->assertEquals(fixImgurURL("http://imgur.com/a/LhZMQ"), 
+												false);
+	}
+
+	public function testImgJson(){
+		$this-assertEquals(imgJson(new redpost("1p4fu8", "Picking your nose in public...harmless right? (from /r/whatcouldgowrong)", "http://i.imgur.com/k06LEV6.gif")), {"id":"1p4fu8", "title":"Picking your nose in public...harmless right? (from \/r\/whatcouldgowrong)", "url":"http:\/\/i.imgur.com\/k06LEV6.gif"});
 	}
 
 	// NOT NEEDED
