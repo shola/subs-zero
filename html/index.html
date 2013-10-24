@@ -45,18 +45,13 @@
     </div>
 
     <div class="container">
-
-      <div class="simple-style">
-        <h1>Image Tiles</h1>
-        <p class="lead">Click a tile to see the punch line.</p>
-      </div>
-
+  
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-5">
-          <p><img src="http://placehold.it/350x350"></p>
+          <p class="joke">And Then I shit on the carpet</p>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-5">
-          <p><img src="http://placehold.it/350x350"></p>
+          <p class="joke">Best Modern Family scene ever.</p>
         </div>
       </div>
 
@@ -64,14 +59,49 @@
 
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-5">
-          <p><img src="http://placehold.it/350x350"></p>
+          <p class="joke">Evolving Graffiti</p>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-5">
-          <p><img src="http://placehold.it/350x350"></p>
+          <p class="joke">Picking your nose in public... harmless, right?</p>
         </div>
       </div>
 
+      <!-- <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-5">
+          <p class="joke"><img src="http://placehold.it/350&text=And Then I shit on the carpet"></p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-5">
+          <p class="joke"><img src="http://placehold.it/350&text=Best Modern Family scene ever."></p>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-5">
+          <p class="joke"><img src="http://placehold.it/350&text=Evolving Graffiti"></p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-5">
+          <p class="joke"><img src="http://placehold.it/350&text=Picking your nose in public... harmless, right?"></p>
+        </div>
+      </div> -->
+
     </div><!-- /.container -->
+
+    <footer>
+      <ul class="pager">
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </li>
+      </ul>
+    </footer>
 
 
     <!-- Bootstrap core JavaScript
@@ -79,6 +109,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-  
+    <script type="text/javascript">
+      $("#my-button").click(function(){
+        $("#my-modal").modal();
+      });
+    </script>
 
 </body></html>
