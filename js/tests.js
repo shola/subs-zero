@@ -155,3 +155,47 @@ test("getJsonItem test", function () {
 																						"title": "My pet lizard, Susie, balancing two soda cans on her head."}]), 
 			"Passed!");
 });
+
+
+module("imgur url cleanup");
+test("fixPreFix test", function() {
+	ok(fixPreFix("http://i.imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
+	ok(fixPreFix("http://imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
+	ok(fixPreFix("http://i.imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB");
+	ok(fixPreFix("http://imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB");
+});
+
+test("fixPostFix test", function() {
+	ok(fixPostFix("http://i.imgur.com/s598E4Z.jpg") === "http://i.imgur.com/s598E4Z.jpg");
+	ok(fixPostFix("http://imgur.com/s598E4Z.jpg") === "http://imgur.com/s598E4Z.jpg");
+	ok(fixPostFix("http://i.imgur.com/s598E4Z") === "http://i.imgur.com/s598E4Z.jpg");
+	ok(fixPostFix("http://imgur.com/s598E4Z") === "http://imgur.com/s598E4Z.jpg");
+});
+
+test("fixImgurURL test", function() {
+	// cases to test:
+	// 1) missing "i." after "//"
+	// 2) present "i." after "//"
+	// 3) missing file extension (jpg, gif, png)
+	// 4) present file extension (jpg, gif, png)
+	// 5) non-imgur link
+
+	ok(fixImgurURL("http://i.imgur.com/qfT0wUg.png") === "http://i.imgur.com/qfT0wUg.png");
+	ok(fixImgurURL("http://imgur.com/qfT0wUg.png") === "http://i.imgur.com/qfT0wUg.png");
+	ok(fixImgurURL("http://i.imgur.com/qfT0wUg") === "http://i.imgur.com/qfT0wUg.jpg");
+	ok(fixImgurURL("http://imgur.com/qfT0wUg") === "http://i.imgur.com/qfT0wUg.jpg");
+
+	ok(fixImgurURL("http://i.imgur.com/s598E4Z.jpg") === "http://i.imgur.com/s598E4Z.jpg");
+	ok(fixImgurURL("http://imgur.com/s598E4Z.jpg") === "http://i.imgur.com/s598E4Z.jpg");
+	ok(fixImgurURL("http://i.imgur.com/s598E4Z") === "http://i.imgur.com/s598E4Z.jpg");
+	ok(fixImgurURL("http://imgur.com/s598E4Z") === "http://i.imgur.com/s598E4Z.jpg");
+
+	ok(fixImgurURL("http://i.imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
+	ok(fixImgurURL("http://imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
+	ok(fixImgurURL("http://i.imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB.jpg");
+	ok(fixImgurURL("http://imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB.jpg");
+
+	ok(fixImgurURL("http://31.media.tumblr.com/137f92927437c1c83cbfefe6787f8552/tumblr_mv2az1qoqy1rqd0kpo1_400.gif") === false);
+
+	ok(fixImgurURL("http://imgur.com/a/LhZMQ") === false);
+});
