@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>jQuery.getJSON demo</title>
+  <style>
+  img {
+    height: 100px;
+    float: left;
+  }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+</head>
+<body>
+	<div id="content">
+		<div class="col-xs-12 col-sm-6 col-md-5" id="4">
+      
+        <a data-toggle="modal" href="#joke-modal4" class="thumbnail joke">Loading...</a>
+
+        <div class="modal fade" id="joke-modal4" tabindex="-1" role="dialog" aria-labelledby="joke-modal4-Label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Loading...</h4>
+              </div>
+              <div class="modal-body">
+                <!-- <img src="images/Picking_your_nose_in_public...harmless_right.gif">  -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+	</div>
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script>
+
+	
+function fixPrefix(url) {
+	var splitURL = url.split("//"),
+			tail = splitURL[1];
+
+	if (tail.slice(0, 11) === "i.imgur.com") {
+		return url;
+	} else {
+		return "http://i." + tail;
+	}
+}
+
+function fixPostfix(url) {
+	var imgExt = {'.jpg': true, '.png': true, '.gif': true};
+	var urlPostfix = url.slice(-4);
+
+	if (urlPostfix in imgExt) {
+		return url;
+	} else {
+		// imgur will open an image with any extension. use jpg as default
+		return url + ".jpg";
+	}
+}
+
+function fixImgurURL(url) {
+	var splitURL = url.split("//"),
+			tail = splitURL[1],
+			re = /imgur\.com/;
+
+	if (!re.test(url)) {
+		return false;
+	} 
+
+	return fixPostfix(fixPrefix(url));
+}
+
+
+function getSubReddit(rurl) {
+	  $.ajax({
+	  	type: 'GET',
+	  	dataType: "jsonp",
+	  	jsonp: "jsonp",
+	  	url: rurl, 
+	  	cache: false,
+	  	success: function(data) { 
+	  		var postsArray = getChildrenInfo(data),
+	  				postItem = postsArray[2];
+	  				
+	  		// the only imgur images that will not be displayed in this version are media albums,
+	  		// which are identified by have a populated media_embed attribute. further explanation
+	  		// to follow
+
+	  		// need to generalize beyond just the first item in the list!
+	  		console.log(postsArray, postItem, postItem.media_embed);
+	  		if (!postItem.media_embed)	{		
+		  		var el = $("#4"),
+		  				url = fixImgurURL(postItem.url);
+		  		el.find("a").attr("href", url);
+		  		el.find(".thumbnail").html(postItem.title);
+		  		el.find(".modal-title").html(postItem.title);
+		  		el.find(".modal-body").append("<img src='" + url + "'>");
+		  	}
+	  		// console.log(el);
+	  	},
+	  	error: function() { alert("there was an error retrieving the json from url"); }
+	  });
+	}
+
+	getSubReddit("http://www.reddit.com/r/funny.json");
+
+	function getChildrenInfo(subredditJSON) {
+	// assumes a valid JSON object from the Reddit API
+	var children = subredditJSON.data.children,
+			numChildren = children.length
+			result = [];
+	
+	for (var i = 0; i < numChildren; i++) {
+		var child = children[i].data,
+				url = fixImgurURL(child.url);
+		if (url)
+			result[i] = {"id": child.id, "url": url, "title": child.title};
+	};
+
+	return result;
+}
+
+	var subredditJSON = {
+  "kind": "Listing",
+  "data": {
+      "modhash": "1fdj6snd0qe017cfc07c987ac80cc3c73f093c3c9e8c3c7a0d",
+      "children": [{
+          "kind": "t3",
+          "data": {
+              "domain": "i.imgur.com",
+              "banned_by": null,
+              "media_embed": {},
+              "subreddit": "funny",
+              "selftext_html": null,
+              "selftext": "",
+              "likes": null,
+              "secure_media": null,
+              "saved": false,
+              "id": "1p6ks5",
+              "secure_media_embed": {},
+              "stickied": false,
+              "author": "red_4",
+              "media": null,
+              "score": 2035,
+              "approved_by": null,
+              "over_18": false,
+              "hidden": false,
+              "thumbnail": "http://d.thumbs.redditmedia.com/49HOA4P7qdw-M28i.jpg",
+              "subreddit_id": "t5_2qh33",
+              "edited": false,
+              "link_flair_css_class": null,
+              "author_flair_css_class": null,
+              "downs": 3486,
+              "is_self": false,
+              "permalink": "/r/funny/comments/1p6ks5/my_pet_lizard_susie_balancing_two_soda_cans_on/",
+              "name": "t3_1p6ks5",
+              "created": 1382718712.0,
+              "url": "http://i.imgur.com/VbrHSv5.jpg",
+              "author_flair_text": null,
+              "title": "My pet lizard, Susie, balancing two soda cans on her head.",
+              "created_utc": 1382689912.0,
+              "link_flair_text": null,
+              "distinguished": null,
+              "num_comments": 176,
+              "visited": false,
+              "num_reports": null,
+              "ups": 5521
+          }
+      }, {
+          "kind": "t3",
+          "data": {
+              "domain": "imgur.com",
+              "banned_by": null,
+              "media_embed": {},
+              "subreddit": "funny",
+              "selftext_html": null,
+              "selftext": "",
+              "likes": null,
+              "secure_media": null,
+              "saved": false,
+              "id": "1p6ouk",
+              "secure_media_embed": {},
+              "stickied": false,
+              "author": "thomisaac",
+              "media": null,
+              "score": 684,
+              "approved_by": null,
+              "over_18": false,
+              "hidden": false,
+              "thumbnail": "http://d.thumbs.redditmedia.com/_VLbdGHEzM_DD-7Q.jpg",
+              "subreddit_id": "t5_2qh33",
+              "edited": false,
+              "link_flair_css_class": null,
+              "author_flair_css_class": null,
+              "downs": 205,
+              "is_self": false,
+              "permalink": "/r/funny/comments/1p6ouk/you_maybe_hipster_but_you_will_never_be_this/",
+              "name": "t3_1p6ouk",
+              "created": 1382725933.0,
+              "url": "http://imgur.com/W44bbC9",
+              "author_flair_text": null,
+              "title": "You maybe Hipster, but you will never be this hipster [x-post from r/hipster]",
+              "created_utc": 1382697133.0,
+              "link_flair_text": null,
+              "ups": 889,
+              "num_comments": 44,
+              "visited": false,
+              "num_reports": null,
+              "distinguished": null
+          }
+      }],
+      "after": "t3_1p5l0r",
+      "before": null
+    }
+  };
+
+var sampleChild = {
+            "kind": "t3",
+            "data": {
+                "domain": "i.imgur.com",
+                "banned_by": null,
+                "media_embed": {},
+                "subreddit": "funny",
+                "selftext_html": null,
+                "selftext": "",
+                "likes": null,
+                "secure_media": null,
+                "saved": false,
+                "id": "1p6ks5",
+                "secure_media_embed": {},
+                "stickied": false,
+                "author": "red_4",
+                "media": null,
+                "score": 2035,
+                "approved_by": null,
+                "over_18": false,
+                "hidden": false,
+                "thumbnail": "http://d.thumbs.redditmedia.com/49HOA4P7qdw-M28i.jpg",
+                "subreddit_id": "t5_2qh33",
+                "edited": false,
+                "link_flair_css_class": null,
+                "author_flair_css_class": null,
+                "downs": 3486,
+                "is_self": false,
+                "permalink": "/r/funny/comments/1p6ks5/my_pet_lizard_susie_balancing_two_soda_cans_on/",
+                "name": "t3_1p6ks5",
+                "created": 1382718712.0,
+                "url": "http://i.imgur.com/VbrHSv5.jpg",
+                "author_flair_text": null,
+                "title": "My pet lizard, Susie, balancing two soda cans on her head.",
+                "created_utc": 1382689912.0,
+                "link_flair_text": null,
+                "distinguished": null,
+                "num_comments": 176,
+                "visited": false,
+                "num_reports": null,
+                "ups": 5521
+            }
+        };
+
+// console.log(getChildrenInfo(subredditJSON)) ;
+
+</script>
+</html>
