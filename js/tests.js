@@ -145,9 +145,9 @@ test("getJsonItem test", function () {
 	ok( _.isEqual(getChildrenInfo(subredditJSON), [{	"id": "1p6ks5", 
 																						"url": "http://i.imgur.com/VbrHSv5.jpg", 
 																						"title": "My pet lizard, Susie, balancing two soda cans on her head."},
-																					{	"id": "1p6ks5",
-																						"url": "http://i.imgur.com/VbrHSv5.jpg",
-																						"title": "My pet lizard, Susie, balancing two soda cans on her head."}]), 
+																					{	"id": "1p6ouk",
+																						"url": "http://i.imgur.com/W44bbC9.jpg",
+																						"title": "You maybe Hipster, but you will never be this hipster [x-post from r/hipster]"}]), 
 			"Passed!");
 
 	ok( !_.isEqual(getChildrenInfo(subredditJSON), [{	"id": "1p6ks5", 
@@ -196,6 +196,4 @@ test("fixImgurURL test", function() {
 	ok(fixImgurURL("http://imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB.jpg");
 
 	ok(fixImgurURL("http://31.media.tumblr.com/137f92927437c1c83cbfefe6787f8552/tumblr_mv2az1qoqy1rqd0kpo1_400.gif") === false);
-
-	ok(fixImgurURL("http://imgur.com/a/LhZMQ") === false);
 });
