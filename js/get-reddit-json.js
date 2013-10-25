@@ -16,30 +16,49 @@
 // })();
 
 function fixPrefix(url) {
-	// // assumes imgur.com link
-	// if (preg_match("/http:\/\/i.imgur.com/", url)) {
-	// 	return url;
-	// } else {
-	// 	url = explode("//", url)[1];
-	// 	return "http://i." . url;
-	// }
+	var splitURL = url.split("//"),
+			tail = splitURL[1];
+
+	if (tail.slice(0, 11) === "i.imgur.com") {
+		return url;
+	} else {
+		return "http://i." + tail;
+	}
 }
 
 function fixPostfix(url) {
-	// imgExt = ['.jpg', '.png', '.gif'];
-	// urlPostfix = substr(url, -4);
+	var imgExt = {'.jpg': true, '.png': true, '.gif': true};
+	var urlPostfix = url.slice(-4);
 
-	// if (in_array(urlPostfix, imgExt)) {
-	// 	return url;
-	// } else {
-	// 	// imgur will open an image with any extension. use jpg as default
-		
-	// 	return url . ".jpg";
-	// }
+	if (urlPostfix in imgExt) {
+		return url;
+	} else {
+		// imgur will open an image with any extension. use jpg as default
+		return url + ".jpg";
+	}
 }
 
 function fixImgurURL(url) {
-	// // assume only image URL's
+	var splitURL = url.split("//"),
+			tail = splitURL[1],
+			re = /imgur\.com/;
+
+	if (!re.test(url)) {
+		return false;
+	} 
+
+	var fixedURL = fixPostfix(fixPrefix(url));
+
+	$.ajax({
+				type: 'HEAD',
+				url: fixedURL,
+				success: function() {
+					return fixedURL;
+				},
+				error: function() {
+					return false;
+				}
+	});
 
 	// if (!(preg_match("/imgur.com/", url))) {
 	// 	return false;

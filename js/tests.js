@@ -158,18 +158,18 @@ test("getJsonItem test", function () {
 
 
 module("imgur url cleanup");
-test("fixPreFix test", function() {
-	ok(fixPreFix("http://i.imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
-	ok(fixPreFix("http://imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
-	ok(fixPreFix("http://i.imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB");
-	ok(fixPreFix("http://imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB");
+test("fixPrefix test", function() {
+	ok(fixPrefix("http://i.imgur.com/Itn0JuB.gif") == "http://i.imgur.com/Itn0JuB.gif");
+	ok(fixPrefix("http://imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
+	ok(fixPrefix("http://i.imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB");
+	ok(fixPrefix("http://imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB");
 });
 
-test("fixPostFix test", function() {
-	ok(fixPostFix("http://i.imgur.com/s598E4Z.jpg") === "http://i.imgur.com/s598E4Z.jpg");
-	ok(fixPostFix("http://imgur.com/s598E4Z.jpg") === "http://imgur.com/s598E4Z.jpg");
-	ok(fixPostFix("http://i.imgur.com/s598E4Z") === "http://i.imgur.com/s598E4Z.jpg");
-	ok(fixPostFix("http://imgur.com/s598E4Z") === "http://imgur.com/s598E4Z.jpg");
+test("fixPostfix test", function() {
+	ok(fixPostfix("http://i.imgur.com/s598E4Z.jpg") === "http://i.imgur.com/s598E4Z.jpg");
+	ok(fixPostfix("http://imgur.com/s598E4Z.jpg") === "http://imgur.com/s598E4Z.jpg");
+	ok(fixPostfix("http://i.imgur.com/s598E4Z") === "http://i.imgur.com/s598E4Z.jpg");
+	ok(fixPostfix("http://imgur.com/s598E4Z") === "http://imgur.com/s598E4Z.jpg");
 });
 
 test("fixImgurURL test", function() {
