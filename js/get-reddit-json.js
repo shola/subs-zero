@@ -59,9 +59,10 @@ function getSubReddit(rurl) {
 	  	url: rurl, 
 	  	cache: false,
 	  	success: function(data) { 
-	  		var postsArray = getChildrenInfo(data);
+	  		var postsArray = getChildrenInfo(data),
+	  			 	i = 1;
 
-	  		for (var i = 0; i < 4; i++) {
+	  		while (i <= 4) {
 	  			postItem = postsArray[i];
 	  				
 		  		// the only imgur images that will not be displayed in this version are media albums,
@@ -73,10 +74,10 @@ function getSubReddit(rurl) {
 		  		if (!postItem.media_embed)	{		
 			  		var el = $("#" + i),
 			  				url = fixImgurURL(postItem.url);
-			  		el.find("a").attr("href", url);
 			  		el.find(".thumbnail").html(postItem.title);
 			  		el.find(".modal-title").html(postItem.title);
 			  		el.find(".modal-body").append("<img src='" + url + "'>");
+			  		i++;
 			  	}
 		  		// console.log(el);
 		  	}
