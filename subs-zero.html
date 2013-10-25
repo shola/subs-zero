@@ -9,8 +9,7 @@
     <title>Subs-Zero SubReddit Viewer</title>
 
     <!-- Bootstrap core CSS -->
-    <!-- <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet"> -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/simple-style.css" rel="stylesheet">
@@ -50,7 +49,30 @@
 
         <!-- Modal Tile -->
 
-        <div class="col-xs-12 col-sm-6 col-md-5">
+        <div class="col-xs-12 col-sm-6 col-md-5" id="1">
+            <a data-toggle="modal" href="#joke1-modal" class="thumbnail joke">Loading...</a>
+
+            <div class="modal fade" id="joke1-modal" tabindex="-1" role="dialog" aria-labelledby="joke1-modal-Label" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Loading...</h4>
+                  </div>
+                  <div class="modal-body">
+                    <!-- <img src="images/And_then_I_shit_on_the_carpet.jpg">  -->
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- Modal Tile -->
+
+        <div class="col-xs-12 col-sm-6 col-md-5" id="2">
             <a data-toggle="modal" href="#joke2-modal" class="thumbnail joke">Best Modern Family scene ever.</a>
 
             <div class="modal fade" id="joke2-modal" tabindex="-1" role="dialog" aria-labelledby="joke2-modal-Label" aria-hidden="true">
@@ -71,34 +93,9 @@
             </div>
         </div>
 
-
         <!-- Modal Tile -->
 
-        <div class="col-xs-12 col-sm-6 col-md-5">
-            <a data-toggle="modal" href="#joke1-modal" class="thumbnail joke">And then I shit on the carpet</a>
-
-            <div class="modal fade" id="joke1-modal" tabindex="-1" role="dialog" aria-labelledby="joke1-modal-Label" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">And then I shit on the carpet</h4>
-                  </div>
-                  <div class="modal-body">
-                    <img src="images/And_then_I_shit_on_the_carpet.jpg"> 
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-
-
-        <!-- Modal Tile -->
-
-        <div class="col-xs-12 col-sm-6 col-md-5">
+        <div class="col-xs-12 col-sm-6 col-md-5" id="3">
           
             <a data-toggle="modal" href="#joke3-modal" class="thumbnail joke">Evolving Graffiti</a>
 
@@ -123,7 +120,7 @@
 
         <!-- Modal Tile -->
 
-        <div class="col-xs-12 col-sm-6 col-md-5">
+        <div class="col-xs-12 col-sm-6 col-md-5" id="4">
           
             <a data-toggle="modal" href="#joke4-modal" class="thumbnail joke">Picking your nose in public... harmless, right?</a>
 
@@ -177,10 +174,8 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script>
-      
-    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="js/get-reddit-json.js"></script>
 
 </body></html>

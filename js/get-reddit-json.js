@@ -59,24 +59,27 @@ function getSubReddit(rurl) {
 	  	url: rurl, 
 	  	cache: false,
 	  	success: function(data) { 
-	  		var postsArray = getChildrenInfo(data),
-	  				postItem = postsArray[0];
-	  				
-	  		// the only imgur images that will not be displayed in this version are media albums,
-	  		// which are identified by have a populated media_embed attribute. further explanation
-	  		// to follow
+	  		var postsArray = getChildrenInfo(data);
 
-	  		// need to generalize beyond just the first item in the list!
-	  		console.log(postsArray, postItem, postItem.media_embed);
-	  		if (!postItem.media_embed)	{		
-		  		var el = $("#4"),
-		  				url = fixImgurURL(postItem.url);
-		  		el.find("a").attr("href", url);
-		  		el.find(".thumbnail").html(postItem.title);
-		  		el.find(".modal-title").html(postItem.title);
-		  		el.find(".modal-body").append("<img src='" + url + "'>");
+	  		for (var i = 0; i < 4; i++) {
+	  			postItem = postsArray[i];
+	  				
+		  		// the only imgur images that will not be displayed in this version are media albums,
+		  		// which are identified by have a populated media_embed attribute. further explanation
+		  		// to follow
+
+		  		// need to generalize beyond just the first item in the list!
+		  		// console.log(postsArray, postItem, postItem.media_embed);
+		  		if (!postItem.media_embed)	{		
+			  		var el = $("#" + i),
+			  				url = fixImgurURL(postItem.url);
+			  		el.find("a").attr("href", url);
+			  		el.find(".thumbnail").html(postItem.title);
+			  		el.find(".modal-title").html(postItem.title);
+			  		el.find(".modal-body").append("<img src='" + url + "'>");
+			  	}
+		  		// console.log(el);
 		  	}
-	  		// console.log(el);
 	  	},
 	  	error: function() { alert("there was an error retrieving the json from url"); }
 	  });
@@ -97,3 +100,5 @@ function getChildrenInfo(subredditJSON) {
 
 	return result;
 }
+
+getSubReddit("http://www.reddit.com/r/funny.json");
