@@ -47,37 +47,7 @@ function fixImgurURL(url) {
 		return false;
 	} 
 
-	var fixedURL = fixPostfix(fixPrefix(url));
-
-	$.ajax({
-				type: 'HEAD',
-				url: fixedURL,
-				success: function() {
-					return fixedURL;
-				},
-				error: function() {
-					return false;
-				}
-	});
-
-	// if (!(preg_match("/imgur.com/", url))) {
-	// 	return false;
-	// } 
-
-	// // post = fixPostfix(url);
-	// // if(post) {
-	// // 	return fixPrefix(post);
-	// // }
-	// // else {
-	// // 	return "doesn't exist";
-	// // }
-
-	// res = fixPostfix(fixPrefix(url));
-	// if(@exif_imagetype(res)) {
-	// 	return res;
-	// } else {
-	// 	return false;
-	// }
+	return fixPostfix(fixPrefix(url));
 }
 
 
@@ -89,16 +59,24 @@ function getSubReddit(rurl) {
 	  	url: rurl, 
 	  	cache: false,
 	  	success: function(data) { 
-	  		var postsArray = getChildrenInfo(data);
-	  		var postItem = postsArray[0];
-	  		var el = $("#4");
-	  		var url = fixImgurURL(postItem.url);
+	  		var postsArray = getChildrenInfo(data),
+	  				postItem = postsArray[0];
+	  				
+	  		// the only imgur images that will not be displayed in this version are media albums,
+	  		// which are identified by have a populated media_embed attribute. further explanation
+	  		// to follow
 
-	  		el.find("a").attr("href", url);
-	  		el.find(".thumbnail").html(postItem.title);
-	  		el.find(".modal-title").html(postItem.title);
-	  		el.find(".modal-body").append("<img src='" + url + "'>");
-	  		console.log(el);
+	  		// need to generalize beyond just the first item in the list!
+	  		console.log(postsArray, postItem, postItem.media_embed);
+	  		if (!postItem.media_embed)	{		
+		  		var el = $("#4"),
+		  				url = fixImgurURL(postItem.url);
+		  		el.find("a").attr("href", url);
+		  		el.find(".thumbnail").html(postItem.title);
+		  		el.find(".modal-title").html(postItem.title);
+		  		el.find(".modal-body").append("<img src='" + url + "'>");
+		  	}
+	  		// console.log(el);
 	  	},
 	  	error: function() { alert("there was an error retrieving the json from url"); }
 	  });
@@ -111,8 +89,10 @@ function getChildrenInfo(subredditJSON) {
 			result = [];
 	
 	for (var i = 0; i < numChildren; i++) {
-		var child = children[0].data;
-		result[i] = {"id": child.id, "url": child.url, "title": child.title};
+		var child = children[i].data,
+				url = fixImgurURL(child.url);
+		if (url)
+			result[i] = {"id": child.id, "url": url, "title": child.title};
 	};
 
 	return result;
