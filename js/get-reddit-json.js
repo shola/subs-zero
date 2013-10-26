@@ -33,8 +33,8 @@ function fixPostfix(url) {
 	if (urlPostfix in imgExt) {
 		return url;
 	} else {
-		// imgur will open an image with any extension. use jpg as default
-		return url + ".jpg";
+		// imgur will open an image with any extension. use gif as default
+		return url + ".gif";
 	}
 }
 
@@ -46,6 +46,15 @@ function fixImgurURL(url) {
 	if (!re.test(url)) {
 		return false;
 	} 
+
+	// trim "gallery/" to ensure that the url goes to an image link, not album.
+	// assume "gallery/" will only be included un URL once 
+	splitURL = url.split("gallery/");
+	if (splitURL.length > 1) {
+		url = splitURL[0] + splitURL[1];
+	} else {
+		url = splitURL[0];
+	}
 
 	return fixPostfix(fixPrefix(url));
 }
