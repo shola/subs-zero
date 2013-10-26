@@ -69,9 +69,10 @@ function getSubReddit(rurl) {
 	  	cache: false,
 	  	success: function(data) { 
 	  		var postsArray = getChildrenInfo(data),
+	  				numTiles = 9;
 	  			 	i = 1;
 
-	  		while (i <= 4) {
+	  		while (i <= numTiles) {
 	  			postItem = postsArray[i];
 	  				
 		  		// the only imgur images that will not be displayed in this version are media albums,
