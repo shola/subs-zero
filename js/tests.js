@@ -142,58 +142,62 @@ var sampleChild = {
         };
 
 test("getJsonItem test", function () {
-	ok( _.isEqual(getChildrenInfo(subredditJSON), [{	"id": "1p6ks5", 
-																						"url": "http://i.imgur.com/VbrHSv5.jpg", 
-																						"title": "My pet lizard, Susie, balancing two soda cans on her head."},
-																					{	"id": "1p6ouk",
-																						"url": "http://i.imgur.com/W44bbC9.jpg",
-																						"title": "You maybe Hipster, but you will never be this hipster [x-post from r/hipster]"}]), 
-			"Passed!");
+  ok( _.isEqual(getChildrenInfo(subredditJSON), [{  "id": "1p6ks5", 
+                                            "url": "http://i.imgur.com/VbrHSv5.jpg", 
+                                            "title": "My pet lizard, Susie, balancing two soda cans on her head."},
+                                          { "id": "1p6ouk",
+                                            "url": "http://i.imgur.com/W44bbC9.jpg",
+                                            "title": "You maybe Hipster, but you will never be this hipster [x-post from r/hipster]"}]));
 
-	ok( !_.isEqual(getChildrenInfo(subredditJSON), [{	"id": "1p6ks5", 
-																						"url": "http://i.imgur.com/VbrHSv5.jpg", 
-																						"title": "My pet lizard, Susie, balancing two soda cans on her head."}]), 
-			"Passed!");
+  ok( !_.isEqual(getChildrenInfo(subredditJSON), [{ "id": "1p6ks5", 
+                                            "url": "http://i.imgur.com/VbrHSv5.jpg", 
+                                            "title": "My pet lizard, Susie, balancing two soda cans on her head."}]));
 });
 
 
 module("imgur url cleanup");
 test("fixPrefix test", function() {
-	ok(fixPrefix("http://i.imgur.com/Itn0JuB.gif") == "http://i.imgur.com/Itn0JuB.gif");
-	ok(fixPrefix("http://imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
-	ok(fixPrefix("http://i.imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB");
-	ok(fixPrefix("http://imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB");
+  ok(fixPrefix("http://i.imgur.com/Itn0JuB.gif") == "http://i.imgur.com/Itn0JuB.gif");
+  ok(fixPrefix("http://imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
+  ok(fixPrefix("http://i.imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB");
+  ok(fixPrefix("http://imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB");
 });
 
 test("fixPostfix test", function() {
-	ok(fixPostfix("http://i.imgur.com/s598E4Z.jpg") === "http://i.imgur.com/s598E4Z.jpg");
-	ok(fixPostfix("http://imgur.com/s598E4Z.jpg") === "http://imgur.com/s598E4Z.jpg");
-	ok(fixPostfix("http://i.imgur.com/s598E4Z") === "http://i.imgur.com/s598E4Z.jpg");
-	ok(fixPostfix("http://imgur.com/s598E4Z") === "http://imgur.com/s598E4Z.jpg");
+  ok(fixPostfix("http://i.imgur.com/s598E4Z.jpg") === "http://i.imgur.com/s598E4Z.jpg");
+  ok(fixPostfix("http://imgur.com/s598E4Z.jpg") === "http://imgur.com/s598E4Z.jpg");
+  ok(fixPostfix("http://i.imgur.com/s598E4Z") === "http://i.imgur.com/s598E4Z.jpg");
+  ok(fixPostfix("http://imgur.com/s598E4Z") === "http://imgur.com/s598E4Z.jpg");
 });
 
 test("fixImgurURL test", function() {
-	// cases to test:
-	// 1) missing "i." after "//"
-	// 2) present "i." after "//"
-	// 3) missing file extension (jpg, gif, png)
-	// 4) present file extension (jpg, gif, png)
-	// 5) non-imgur link
+  // cases to test:
+  // 1) missing "i." after "//"
+  // 2) present "i." after "//"
+  // 3) missing file extension (jpg, gif, png)
+  // 4) present file extension (jpg, gif, png)
+  // 5) non-imgur link
 
-	ok(fixImgurURL("http://i.imgur.com/qfT0wUg.png") === "http://i.imgur.com/qfT0wUg.png");
-	ok(fixImgurURL("http://imgur.com/qfT0wUg.png") === "http://i.imgur.com/qfT0wUg.png");
-	ok(fixImgurURL("http://i.imgur.com/qfT0wUg") === "http://i.imgur.com/qfT0wUg.jpg");
-	ok(fixImgurURL("http://imgur.com/qfT0wUg") === "http://i.imgur.com/qfT0wUg.jpg");
+  ok(fixImgurURL("http://i.imgur.com/qfT0wUg.png") === "http://i.imgur.com/qfT0wUg.png");
+  ok(fixImgurURL("http://imgur.com/qfT0wUg.png") === "http://i.imgur.com/qfT0wUg.png");
+  ok(fixImgurURL("http://i.imgur.com/qfT0wUg") === "http://i.imgur.com/qfT0wUg.jpg");
+  ok(fixImgurURL("http://imgur.com/qfT0wUg") === "http://i.imgur.com/qfT0wUg.jpg");
 
-	ok(fixImgurURL("http://i.imgur.com/s598E4Z.jpg") === "http://i.imgur.com/s598E4Z.jpg");
-	ok(fixImgurURL("http://imgur.com/s598E4Z.jpg") === "http://i.imgur.com/s598E4Z.jpg");
-	ok(fixImgurURL("http://i.imgur.com/s598E4Z") === "http://i.imgur.com/s598E4Z.jpg");
-	ok(fixImgurURL("http://imgur.com/s598E4Z") === "http://i.imgur.com/s598E4Z.jpg");
+  ok(fixImgurURL("http://i.imgur.com/s598E4Z.jpg") === "http://i.imgur.com/s598E4Z.jpg");
+  ok(fixImgurURL("http://imgur.com/s598E4Z.jpg") === "http://i.imgur.com/s598E4Z.jpg");
+  ok(fixImgurURL("http://i.imgur.com/s598E4Z") === "http://i.imgur.com/s598E4Z.jpg");
+  ok(fixImgurURL("http://imgur.com/s598E4Z") === "http://i.imgur.com/s598E4Z.jpg");
 
-	ok(fixImgurURL("http://i.imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
-	ok(fixImgurURL("http://imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
-	ok(fixImgurURL("http://i.imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB.jpg");
-	ok(fixImgurURL("http://imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB.jpg");
+  ok(fixImgurURL("http://i.imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
+  ok(fixImgurURL("http://imgur.com/Itn0JuB.gif") === "http://i.imgur.com/Itn0JuB.gif");
+  ok(fixImgurURL("http://i.imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB.jpg");
+  ok(fixImgurURL("http://imgur.com/Itn0JuB") === "http://i.imgur.com/Itn0JuB.jpg");
 
-	ok(fixImgurURL("http://31.media.tumblr.com/137f92927437c1c83cbfefe6787f8552/tumblr_mv2az1qoqy1rqd0kpo1_400.gif") === false);
+  ok(fixImgurURL("http://31.media.tumblr.com/137f92927437c1c83cbfefe6787f8552/tumblr_mv2az1qoqy1rqd0kpo1_400.gif") === false);
+});
+
+test("isNotMediaObject Test", function() {
+  ok(!isNotMediaObject("http://i.imgur.com/a/7ACQJ.gif"));
+  ok(!isNotMediaObject("http://i.imgur.com/gallery/3az9j.jpg"));
+  ok(isNotMediaObject("http://i.imgur.com/Itn0JuB.jpg"));
 });
