@@ -45,22 +45,25 @@
       </div>
     
       <div class="col-sm-6 col-md-5 col-lg-4">
-        <form role="form" action="php/send-user-email.php" method="post">
-          <h2 class="form-group-heading">Please fill out to contact me</h2>
-          <div class="form-group">
-            <label for="inputEmail">Your Email Address</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder=". . ." autofocus>
-          </div>
-          <div class="form-group">
-            <label for="inputSubject">Subject</label>
-            <input type="text" class="form-control" id="inputSubject" placeholder=". . ." >
-          </div> 
-          <div class="form-group">
-            <label for="Body">Body</label>
-            <textarea class="form-control" id="inputBody" placeholder=". . ." rows="5"></textarea>
-          </div> 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Send</button>
-          </div>
+        <!-- <form role="form" name="mailform" action="php/mailform.php" method="post" onSubmit="return validate.check(this)"> -->
+        <form role="form" name="mailform" action="php/mailform.php" method="post" onSubmit="return validate.check(this)">
+          <fieldset>
+            <h2 class="form-group-heading">Please fill out to contact me</h2>
+            <div class="form-group">
+              <label for="Full_Name">Your Name</label>
+              <input type="text" class="form-control" id="Full_Name" name="Full_Name" placeholder=". . ." autofocus>
+            </div>
+            <div class="form-group">
+              <label for="Email_Address">Your Email Address</label>
+              <input type="email" class="form-control" id="Email_Address" name="Email_Address" placeholder=". . ." autofocus>
+            </div>
+            <div class="form-group">
+              <label for="Your_Message">Body</label>
+              <textarea class="form-control" id="Your_Message" name="Your_Message" placeholder=". . ." rows="5"></textarea>
+            </div> 
+              <button class="btn btn-lg btn-primary btn-block" type="submit" id="send">Send</button>
+            </div>
+          </fieldset> 
         </form>
       </div>
 
