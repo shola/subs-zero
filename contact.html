@@ -44,23 +44,25 @@
         </div>
       </div>
     
-      <form role="form">
-        <h2 class="form-group-heading">Please fill out to contact me</h2>
-        <div class="form-group">
-          <label for="inputEmail">Email Address</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Your email address" autofocus>
-        </div>
-        <div class="form-group">
-          <label for="inputSubject">Subject</label>
-          <input type="text" class="form-control" id="inputSubject" placeholder="Subject" autofocus>
-        </div> 
-        <div class="form-group">
-          <label for="Body">Body</label>
-          <input type="text" class="form-control" id="inputBody" placeholder="Body" autofocus>
-        </div> 
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Send</button>
-        </div>
-      </form>
+      <div class="col-sm-6 col-md-5 col-lg-4">
+        <form role="form" action="php/send-user-email.php" method="post">
+          <h2 class="form-group-heading">Please fill out to contact me</h2>
+          <div class="form-group">
+            <label for="inputEmail">Your Email Address</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder=". . ." autofocus>
+          </div>
+          <div class="form-group">
+            <label for="inputSubject">Subject</label>
+            <input type="text" class="form-control" id="inputSubject" placeholder=". . ." >
+          </div> 
+          <div class="form-group">
+            <label for="Body">Body</label>
+            <textarea class="form-control" id="inputBody" placeholder=". . ." rows="5"></textarea>
+          </div> 
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Send</button>
+          </div>
+        </form>
+      </div>
 
     </div> <!-- end wrap here -->
 
