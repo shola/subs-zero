@@ -55,9 +55,11 @@ if(isset($_POST['Email_Address'])) {
 	  return str_replace($bad,"",$string);
 	}
 	
-	$email_message .= "Full Name: ".clean_string($full_name)."\r\n";
-	$email_message .= "Message: ".clean_string($comments)."\r\n";
-	$email_message .= "Reply-To: ".clean_string($email)."\r\n";
+	$email_message .= "Full Name: ". $full_name."\r\n";
+	$email_message .= "Message: ". $comments."\r\n";
+	$email_message .= "Reply-To: ". $email."\r\n";
+
+	echo $email;
 
 // echo "CLEANED MESSAGE FORMED";
 
@@ -66,6 +68,12 @@ $headers = 'From: '.$email_from."\r\n".
 
 mail($email_to, $email_subject, $email_message, $headers);
 // echo "MAIL SENT!";
+
+// echo "email message" . $email_message . "\r\n";
+// echo "email to" . $email_to . "\r\n";
+// echo "email_subject " . $email_subject . "\r\n";
+// echo "headers" . $headers . "\r\n";
+
 header("Location: $thankyou");
 ?>
 <script>location.replace('<?php echo $thankyou;?>')</script>
