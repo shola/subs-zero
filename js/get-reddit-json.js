@@ -40,13 +40,7 @@ function fixPostfix(url) {
 }
 
 function fixImgurURL(url) {
-	var re = /imgur\.com/;
-
-	if (!re.test(url)) {
-		return false;
-	} else {
-		return fixPostfix(fixPrefix(url));
-	}
+	return fixPostfix(fixPrefix(url));
 }
 
 
@@ -61,11 +55,13 @@ function getSubReddit(rurl) {
 	  		var postsArray = getChildrenInfo(data),
 	  				numTiles = 9;
 
-	  		for (var i = 0; i < numTiles; i++) {
-	  			var postItem = postsArray[i],
+	  		// remember: that the ID's in app.html start at 1!
+	  		for (var i = 1; i <= numTiles; i++) {
+	  			var postItem = postsArray[i - 1],
 		  		 		el = $("#" + i),
 		  				url = fixImgurURL(postItem.url);
 
+		  		console.log(postItem);
 		  		el.find(".thumbnail").html(postItem.title);
 		  		el.find(".modal-title").html(postItem.title);
 		  		el.find(".modal-body").append("<img src='" + url + "'>");
@@ -77,7 +73,13 @@ function getSubReddit(rurl) {
 
 function isNotMediaObject(url) {
 	// the imgur link leads to a media object if "/gallery/" or "/a/" is present
-	return !((/\/gallery\//).test(url) || (/\/a\//.test(url)));
+	var re = /imgur\.com/;
+
+	if (re.test(url)) {
+		return !((/\/gallery\//).test(url) || (/\/a\//.test(url)));
+	} else {
+		return false;
+	}
 }
 
 function getChildrenInfo(subredditJSON) {
