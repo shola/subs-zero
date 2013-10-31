@@ -7,18 +7,18 @@ body {
 }
 
 .joke {
-	padding: 3em;
-	margin-bottom: 2em;
-	color: black;
-	text-align: center;
-	height: 250px;
-	width: 250px;
-	font-size: 15px;
-	background: #e3e3e3;
+  padding: 3em;
+  margin-bottom: 2em;
+  color: black;
+  text-align: center;
+  height: 250px;
+  width: 250px;
+  font-size: 15px;
+  background: #e3e3e3;
 }
 
 img {
-	width: 540px;
+  width: 540px;
 }
 
 /* Sticky footer styles

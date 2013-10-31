@@ -14,8 +14,10 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
 </head>
 <body>
-	<div id="content">
-		<div class="col-xs-12 col-sm-6 col-md-5" id="4">
+	<div class="container">
+    <h2>Browse top r/Funny subreddits by clicking tiles</h2>
+    <div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-5" id="4">
       
         <a data-toggle="modal" href="#joke-modal4" class="thumbnail joke">Loading...</a>
 
@@ -35,6 +37,7 @@
             </div>
           </div>
         </div>
+    	</div>
     </div>
 	</div>
 </body>
@@ -88,7 +91,7 @@ function getSubReddit(rurl) {
 	  	cache: false,
 	  	success: function(data) { 
 	  		var postsArray = getChildrenInfo(data),
-	  				postItem = postsArray[2];
+	  				postItem = postsArray[0];
 	  				
 	  		// the only imgur images that will not be displayed in this version are media albums,
 	  		// which are identified by have a populated media_embed attribute. further explanation

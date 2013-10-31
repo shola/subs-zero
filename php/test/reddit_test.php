@@ -4,6 +4,11 @@ require '../reddit.php';
 
 class RedditTest extends PHPUnit_Framework_TestCase
 {
+
+	public function testImgJson(){
+		$this->assertEquals(imgJson(new redpost("1p4fu8", "Picking your nose in public...harmless right? (from /r/whatcouldgowrong)", "http://i.imgur.com/k06LEV6.gif")), json_encode(array("id" => "1p4fu8", "title" => "Picking your nose in public...harmless right? (from /r/whatcouldgowrong)", "url" => "http://i.imgur.com/k06LEV6.gif")));
+	}
+
 	public function testFixImgurURL()
 	{
 		// cases to test:
@@ -45,10 +50,6 @@ class RedditTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals(fixImgurURL("http://imgur.com/a/LhZMQ"), 
 												false);
-	}
-
-	public function testImgJson(){
-		$this-assertEquals(imgJson(new redpost("1p4fu8", "Picking your nose in public...harmless right? (from /r/whatcouldgowrong)", "http://i.imgur.com/k06LEV6.gif")), {"id":"1p4fu8", "title":"Picking your nose in public...harmless right? (from \/r\/whatcouldgowrong)", "url":"http:\/\/i.imgur.com\/k06LEV6.gif"});
 	}
 
 	// NOT NEEDED
