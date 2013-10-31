@@ -10,7 +10,8 @@
     <title>r/Funny SubReddit Viewer</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet"> -->
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <!-- <link href="css/simple-style.css" rel="stylesheet"> -->
@@ -33,17 +34,25 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="app.html">r/Funny App</a>
+            <a class="navbar-brand" href="#">Mike Situ</a>
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
+              <li class="drowndown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li  class="active"><a href="app.html">r/Funny App</a></li>
+                  <li class="divider"></li>
+                </ul>
+                </a>
+              </li>
               <li><a href="index.html">Home</a></li>
               <li><a href="contact.html">Contact</a></li>
               <li><a href="about.html">About</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
-      </div>
+      </div> <!-- end nav bar -->
 
 
 
@@ -329,7 +338,7 @@
 
     <footer id="footer">
       <div class="container">
-        <p class="text-center muted">&copy Copyright 2013 Michael Olusola Situ</p>  
+        <p class="text-center muted">&copy Copyright 2013 Mike Situ</p>  
       </div>
     <footer>
 
@@ -337,8 +346,11 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/get-reddit-json.js"></script>
 
 </body></html>
