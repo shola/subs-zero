@@ -6,7 +6,7 @@ img {
   width: 100%;
 }
 .joke {
-  padding: 1em;
+  padding: 3em;
   text-align: center;
   color: black;
   height: auto;
@@ -75,4 +75,13 @@ body {
 #footer {
   height: 60px;
   background-color: #f5f5f5;
+}
+.title {
+  text-align: left;
+}
+.employer {
+  text-align: left;
+}
+.tenure {
+  text-align: right;
 }
