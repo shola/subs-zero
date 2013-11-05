@@ -64,7 +64,7 @@ function getSubReddit(rurl) {
 		  		console.log(postItem);
 		  		el.find(".thumbnail").html(postItem.title);
 		  		el.find(".modal-title").html(postItem.title);
-		  		el.find(".modal-body").append("<img src='" + url + "' data-dismiss='modal'>");
+		  		el.find(".modal-body").append("<div data-dismiss='modal'><img src='" + url + "'></div>");
 		  	}
 	  	},
 	  	error: function() { alert("there was an error retrieving the json from url"); }
