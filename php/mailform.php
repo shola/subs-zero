@@ -59,7 +59,6 @@ if(isset($_POST['Email_Address'])) {
 	$email_message .= "Message: ". $comments."\r\n";
 	$email_message .= "Reply-To: ". $email."\r\n";
 
-	echo $email;
 
 // echo "CLEANED MESSAGE FORMED";
 
@@ -74,6 +73,7 @@ mail($email_to, $email_subject, $email_message, $headers);
 // echo "email_subject " . $email_subject . "\r\n";
 // echo "headers" . $headers . "\r\n";
 
+$thankyou = "http://mikesitu.com/thanks.html";
 header("Location: $thankyou");
 ?>
 <script>location.replace('<?php echo $thankyou;?>')</script>
