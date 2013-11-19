@@ -15,6 +15,8 @@
 //   });
 // })();
 
+
+
 function fixPrefix(url) {
 	// assumes that the url starts with 'http://...'
 	var splitURL = url.split("//"),
@@ -62,7 +64,7 @@ function getSubReddit(rurl) {
 		  				url = fixImgurURL(postItem.url);
 
 		  		console.log(postItem);
-		  		el.find(".thumbnail").html(postItem.title);
+		  		el.find(".thumbnail").html(postItem.title.slice(0, 100) + "..."); //only take the 1st 100 
 		  		el.find(".modal-title").html(postItem.title);
 		  		el.find(".modal-body").append("<div data-dismiss='modal'><img src='" + url + "'></div>");
 		  	}
