@@ -57,12 +57,14 @@
 
     <div class="container">
       <h2>Click a joke tile below to get started:</h2>
-      
-      <div id="tooltips">
-         <!-- unable to modify default behavior with this code: trigger="click hover" -->
-        <button id="tip1" type="button" class="btn btn-data" data-trigger="click hover" data-toggle="tooltip" data-placement="bottom" title='Reddit is a social news and entertainment website where registered users submit content in the form of either a link or a text ("self") post. Other users then vote the submission "up" or "down", which is used to rank the post and determine its position on the site&#39;s pages and front page. Content entries are organized by areas of interest called "subreddits"'>What is Reddit?</button>
-        <button id="tip2 "type="button" class="btn btn-data" trigger="click hover" data-toggle="tooltip" data-placement="bottom" title='r/Funny is a subreddit where users post funny images and videos. The primary hosting site is imgur.com, and right now imgur hosted single-images are supported by this web app.'>What is r/Funny?</button>
-      </div>
+
+      <button class="tip btn btn-default" data-container="body" data-toggle="popover" data-trigger="click" data-placement="bottom" data-content='Reddit is a social news and entertainment website where registered users submit content in the form of either a link or a text ("self") post. Other users then vote the submission "up" or "down", which is used to rank the post and determine its position on the site&#39;s pages and front page. Content entries are organized by areas of interest called "subreddits"' role="button">What is Reddit?</button>
+      <button class="tip btn btn-default" data-container="body" data-toggle="popover" data-trigger="click" data-placement="right" data-content='r/Funny is a subreddit where users post funny images and videos. The primary hosting site is imgur.com, and right now imgur hosted single-images are supported by this web app.' role='button'>What is r/Funny?</button>
+
+ <!--      <div id="tooltips">
+        <button id="tip1" type="button" class="btn btn-default" data-trigger="click hover" data-toggle="tooltip" data-placement="bottom" title='Reddit is a social news and entertainment website where registered users submit content in the form of either a link or a text ("self") post. Other users then vote the submission "up" or "down", which is used to rank the post and determine its position on the site&#39;s pages and front page. Content entries are organized by areas of interest called "subreddits"'>What is Reddit?</button>
+        <button id="tip2 "type="button" class="btn btn-default" trigger="click hover" data-toggle="tooltip" data-placement="bottom" title='r/Funny is a subreddit where users post funny images and videos. The primary hosting site is imgur.com, and right now imgur hosted single-images are supported by this web app.'>What is r/Funny?</button>
+      </div> -->
 
       <hr />
 
@@ -321,8 +323,21 @@
     <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script> -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="js/popover.js"></script>
+    <!-- <script src="js/tooltip.js"></script> -->
     <!-- <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script> -->
     <script src="js/get-reddit-json.min.js"></script>
+    <script>
+      $(function() {
+          $('.tip').popover();
+        });
+    </script>
+    <!--<script>
+      $(function() {
+          $('.tooltips').tooltip();
+        });
+    </script> -->
 
 </body></html>
