@@ -61,12 +61,18 @@ function getSubReddit(rurl) {
 	  		for (var i = 1; i <= numTiles; i++) {
 	  			var postItem = postsArray[i - 1],
 		  		 		el = $("#" + i),
-		  				url = fixImgurURL(postItem.url);
+		  				url = fixImgurURL(postItem.url),
+		  				title = postItem.title
+		  				LIMIT = 80;
 
 		  		console.log(postItem);
-		  		el.find(".thumbnail").html(postItem.title.slice(0, 80) + "..."); //only take the 1st 80 
-		  		el.find(".modal-title").html(postItem.title);
+		  		el.find(".modal-title").html(title);
 		  		el.find(".modal-body").append("<div data-dismiss='modal'><img src='" + url + "'></div>");
+		  		if (title.length > LIMIT) { 
+		  			title = title.slice(0, 80) + "...";
+		  		}
+		  		el.find(".thumbnail").html(title); //only take the 1st 80 
+		  		
 		  	}
 	  	},
 	  	error: function() { alert("there was an error retrieving the json from url"); }
