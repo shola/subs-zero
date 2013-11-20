@@ -62,14 +62,15 @@ function getSubReddit(rurl) {
 	  			var postItem = postsArray[i - 1],
 		  		 		el = $("#" + i),
 		  				url = fixImgurURL(postItem.url),
-		  				title = postItem.title
+		  				title = postItem.title,
 		  				LIMIT = 80;
 
 		  		console.log(postItem);
 		  		el.find(".modal-title").html(title);
 		  		el.find(".modal-body").append("<div data-dismiss='modal'><img src='" + url + "'></div>");
+
 		  		if (title.length > LIMIT) { 
-		  			title = title.slice(0, 80) + "...";
+		  			title = title.slice(0, LIMIT) + "...";
 		  		}
 		  		el.find(".thumbnail").html(title); //only take the 1st 80 
 		  		
