@@ -58,8 +58,9 @@
     <div class="container">
       <h2>Click a joke tile below to get started:</h2>
 
-      <button class="tip btn btn-default" data-container="body" data-toggle="popover" data-trigger="click" data-placement="bottom" data-content='Reddit is a social news and entertainment website where registered users submit content in the form of either a link or a text ("self") post. Other users then vote the submission "up" or "down", which is used to rank the post and determine its position on the site&#39;s pages and front page. Content entries are organized by areas of interest called "subreddits"' role="button">What is Reddit?</button>
-      <button class="tip btn btn-default" data-container="body" data-toggle="popover" data-trigger="click" data-placement="right" data-content='r/Funny is a subreddit where users post funny images and videos. The primary hosting site is imgur.com, and right now imgur hosted single-images are supported by this web app.' role='button'>What is r/Funny?</button>
+<!-- data-trigger="focus" -->
+      <button class="tip btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content='Reddit is a social news and entertainment website where registered users submit content in the form of either a link or a text ("self") post. Other users then vote the submission "up" or "down", which is used to rank the post and determine its position on the site&#39;s pages and front page. Content entries are organized by areas of interest called "subreddits"' role="button">What is Reddit?</button>
+      <button class="tip btn btn-default" data-container="body" data-toggle="popover"  data-placement="bottom" data-content='r/Funny is a subreddit where users post funny images and videos. The primary hosting site is imgur.com, and right now imgur hosted single-images are supported by this web app.' role='button'>What is r/Funny?</button> 
 
  <!--      <div id="tooltips">
         <button id="tip1" type="button" class="btn btn-default" data-trigger="click hover" data-toggle="tooltip" data-placement="bottom" title='Reddit is a social news and entertainment website where registered users submit content in the form of either a link or a text ("self") post. Other users then vote the submission "up" or "down", which is used to rank the post and determine its position on the site&#39;s pages and front page. Content entries are organized by areas of interest called "subreddits"'>What is Reddit?</button>
@@ -331,6 +332,7 @@
     <script src="js/get-reddit-json.min.js"></script>
     <script>
       $(function() {
+          // $('.tip).popover('hide');
           $('.tip').popover();
         });
     </script>
